@@ -66,27 +66,6 @@ function App() {
               <Route path="/line" element={<Line />} />
               {/* <Route path="/faq" element={<FAQ />} /> */}
               <Route path="/calendar" element={<Calendar />} />
-<<<<<<< Updated upstream
-              {/* <Route path="/geography" element={<Geography />} /> */}
-
-              <Route
-                path="/dustbin"
-                element={<ProtectedRoute Component={Dustbin} />}
-              />
-              {/* <Route
-                path="/userDash"
-                element={<ProtectedRoute Component={UserDash} />}
-              /> */}
-              <Route
-                path="/adminDash"
-                element={<ProtectedRoute Component={AdminDash} />}
-              />
-              <Route path="/map" element={<ProtectedRoute Component={Map} />} />
-              <Route
-                path="/form"
-                element={<ProtectedRoute Component={Form} />}
-              />
-=======
           <Route path="/geography" element={<Geography />} /> 
             {/* <Route path="/dustbin" element={<ProtectedRoute Component={Dustbin} />} />
              {/* <Route path="/dash" element={<ProtectedRoute Component={Dashboard} />} /> 
@@ -94,7 +73,6 @@ function App() {
               <Route path="/userDash" element={<ProtectedRoute Component={UserDash} />} />
               <Route path="/map" element={<ProtectedRoute Component={Map} />} /> 
               <Route path="/form" element={<ProtectedRoute Component={Form} />} />
->>>>>>> Stashed changes
               <Route path="/bar" element={<ProtectedRoute Component={Bar} />} />
               <Route path="/pie" element={<ProtectedRoute Component={Pie} />} />
               <Route
@@ -102,26 +80,11 @@ function App() {
                 element={<ProtectedRoute Component={Line} />}
               />
               <Route path="/faq" element={<ProtectedRoute Component={FAQ} />} />
-<<<<<<< Updated upstream
-              <Route
-                path="/calendar"
-                element={<ProtectedRoute Component={Calendar} />}
-              />
-              <Route
-                path="/geography"
-                element={<ProtectedRoute Component={Geography} />}
-              />
-              <Route path="/team" element={<Team />} />
-              <Route path="/invoices" element={<Invoices />} />
-              {/* this routes are not hitted then we should show 404 page */}
-              <Route path="*" element={<h1>404 Not Found</h1>} />
-=======
               <Route path="/calendar" element={<ProtectedRoute Component={Calendar} />} />
               <Route path="/geography" element={<ProtectedRoute Component={Geography} />} /> 
               <Route path="/team" element={<Team />} />
               <Route path="/invoices" element={<Invoices />} />*/}
 
->>>>>>> Stashed changes
             </Routes>
           </main>
         </div>

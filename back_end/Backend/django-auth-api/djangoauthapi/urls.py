@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from account.views import AdminUserApprovalView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/admin_dashboard/<int:pk>/', AdminUserApprovalView.as_view(), name='admin_dashboard_api'),
+
     path('api/user/',include('account.urls')),
     path('api/event/', include('account.urls'))  # Include event app URLs
 ]

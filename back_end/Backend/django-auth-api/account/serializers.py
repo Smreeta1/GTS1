@@ -151,7 +151,10 @@ class UserLogoutSerializer(serializers.Serializer):         #POST method
     pass
           
 
-        
+class AdminUserApprovalSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'approved', 'role']      
     
 class EventSerializer(serializers.ModelSerializer):     #POST method
     class Meta:

@@ -42,11 +42,8 @@ export default function SignUp() {
   };
 
   const handleSubmit = async (data) => {
-<<<<<<< Updated upstream
-    const response = await fetch("http://127.0.0.1:8000/api/user/signup/", {
-=======
+    
     const response = await fetch("http://localhost:8000/api/user/register/", {
->>>>>>> Stashed changes
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -19,6 +19,10 @@ from rest_framework import viewsets
 from .models import Event
 from .serializers import EventSerializer
 from .permissions import IsAdminOrReadOnly
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import render
+
 
 # Generate Token Manually
 
@@ -138,23 +142,36 @@ class UserLogoutViewCSRFExempt(UserLogoutView):
     pass
 
 
-
-class AdminUserApprovalView(generics.UpdateAPIView):
+#For Admin Approving Users with role=="Driver" as Authorized Drivers
+class AdminUserApprovalView(generics.UpdateAPIView):  #Enpoint =http://127.0.0.1:8000/api/user/approve/<int:pk>/
     queryset = User.objects.all()
     serializer_class = UserRegisterationSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def update(self, request, *args, **kwargs):
+    def update(self, request, *args, **kwargs):   
         instance = self.get_object()
+        # Check if the user is an admin (you may use a custom permission for this)
+        if not request.user.is_admin:
+            return Response({"error": "You do not have permission to approve users."}, status=status.HTTP_403_FORBIDDEN)
+        
         instance.approved =False
-        if instance.role == 'driver':
+        if instance.role == 'Driver':
             
             instance.approved =True
             instance.save()
             return Response({"message": "Driver approved successfully."})
         return Response({"error": "Only drivers can be approved by the admin."}, status=status.HTTP_400_BAD_REQUEST)
+    
+    def admin_dashboard(request):# Admin Dash Endpoint for Driver Approval=http://127.0.0.1:8000/api/admin_dashboard/
+                                #Allows: PUT, PATCH(Update)
+        
+    # Retrieve a list of drivers awaiting approval
+        drivers = User.objects.filter(role='Driver', approved=False)
+        return render(request, 'admin_dashboard.jsx', {'drivers': drivers})
 
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = EventSerializer
     permission_classes = [IsAdminOrReadOnly]
+    authentication_classes = [TokenAuthentication]  # Add token authentication
+    permission_classes = [IsAuthenticated, IsAdminOrReadOnly] 
